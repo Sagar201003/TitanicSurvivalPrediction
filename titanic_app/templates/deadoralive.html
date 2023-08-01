@@ -1,0 +1,75 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction using Machine Learning</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    .body
+    {
+    display: flex;
+    }
+    .container{
+        /* height: 10vh;
+        width: 25vw; */
+        background-color: rgba(74, 212, 74, 0.761);
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* padding: 10px; */
+        margin-top: 15%;
+        border-radius: 15px;
+    }
+    .containerneg
+  {
+      /* height: 10vh;
+      width: 25vw; */
+      background-color:  rgba(255, 0, 0, 0.666);
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* padding: 10px; */
+      margin-top: 15%;
+      border-radius: 15px;
+  }
+</style>
+{% if is_affected == False %}
+  <body class="bg-[url('{% static 'img/titanic_survived.jpg' %}')] bg-cover flex flex-col items-center p-20">
+    {% else %}
+    <body class="bg-[url('{% static 'img/titanic_dead.jpeg' %}')] bg-cover flex flex-col items-center p-20">
+      {% endif %}
+
+    <div class="flex flex-col items-center">
+      <h1 class="text-[#FAE4B5] text-6xl tracking-widest">
+        Predictor
+      </h1>
+      <h2 class="text-white text-3xl mt-2">
+        made using <span class="text-4xl">Machine Learning</span>
+      </h2>
+    </div>
+    <!-- Form for taking the data to test  -->  
+    {% if is_affected == False %}
+    <div class="container w-[40vw] h-[30vh]">
+      <p class="content">
+          <h1 class="text-3xl ">{{result}}</h1>
+      </p>
+</div>
+    
+    {% else %}
+    <div class="containerneg w-[40vw] h-[30vh]">
+      <p class="content">
+          <h1 class="text-3xl">{{result}}</h1>
+      </p>
+    </div>
+    
+      {% endif %}
+          <a href="{% url 'view' %}"><button  type="submit" id="submit" class="bg-[#FAE4B5] text-black py-2 px-8 text-xl rounded font-bold flex justify-center items-center mt-8 border-[1px] border-black">Try again</button></a>
+    </form> 
+  </body>
+</html>
